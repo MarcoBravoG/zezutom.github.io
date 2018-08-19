@@ -8,29 +8,38 @@ body {
     flex: 1;
     min-height: 100vh;
     align-items: center;
+    background: url(img/agenda-blur-close-up-273132.jpg) bottom center;
+    background-size: cover;    
+}
+
+:root {
+    --clockSize: 87vw;
+    --clockPadding: 5vw;
 }
 
 .clock-outer {
-    width: 25vw;
-    height: 25vw;
+    width: var(--clockSize);
+    height: var(--clockSize);
     margin: 5vw auto;
     position: relative;
-    padding: 2vw;
+    padding: var(--clockPadding);
     display: flex;
     align-items: center;
+    border-radius: 50%;    
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(128, 128, 128, 0.9));
 }
 
 .marker {
     position: absolute;
     left: 50%;
-    width: 7px;
-    height: 7px;    
-    background: gray;
+    width: 15px;
+    height: 3px;    
+    background: white;
     border-radius: 50%;
 }
 
 .marker.quarter {
-    background: white;
+    background: transparent;
     width: 0;
     height: 0;
     border-radius: 0%;
@@ -85,25 +94,27 @@ body {
     background: black;
     position: absolute;
     top: 50%;
+    left: 50%;
     transform-origin: 100%; /* rotate at the very end of the x-axis */
-    transform: rotate(90deg); /* point all hands at 12 o'clock  */
+    transform: rotate(90deg);  /* point all hands at 12 o'clock */
     align-content: center;
 }
 
 .hand.second {
     background: red;
-    width: 50%;
+    width: 40%;
+    left: 10%;
     height: .25vw;
 }
 
 .hand.minute {
-    width: 45%;
-    left: 5%;
+    width: 35%;
+    left: 15%;
 }
 
 .hand.hour {
-    width: 35%;
-    left: 15%;
+    width: 30%;
+    left: 20%;
 }
 
 .ticker {

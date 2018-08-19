@@ -7,16 +7,17 @@ const drawClockFace = Symbol('drawClockFace');
 class Clock {
 
     constructor() {
+        this.markerCount = 60;
         this.secondHand = document.querySelector('.second');
         this.minuteHand = document.querySelector('.minute');
         this.hourHand = document.querySelector('.hour');
-        
+
         // all hands are kept in a vertical position (90-degree rotation)
         this.offset = 90;
-        
+
         this[drawClockFace]();
         this.updateTime(true);   
-        
+
         setInterval(this.updateTime.bind(this), 1000);
     }
 
@@ -40,24 +41,39 @@ class Clock {
     }
 
     [drawClockFace]() {
-        const markers = Array.from(document.querySelectorAll('.marker'));
+        const outerClockFace = document.getElementById('outer-clock-face');
+
+        // Size unit based on the viewport height and width
+        const unit = (window.innerHeight <= window.innerWidth) ? 'vh' : 'vw';
+
+        // Replace the clock size unit to ensure the right proportions
+        document.documentElement.style.setProperty('--clockSize', `87${unit}`);
+        document.documentElement.style.setProperty('--clockPadding', `5${unit}`);
 
         // How far apart (in degrees) to set individual markers, so that they form a circle
-        const rotateStep = 360 / markers.length;
+        const rotateStep = 360 / this.markerCount;
 
         // Circle radius, relative to the width of the view
-        const radius = 15;
+        const radius = 45;
 
-        markers.forEach((marker, index) => {
-            const rotation = index * rotateStep;
-            marker.style.transform = `rotate(${rotation}deg) translate(${radius}vw) rotate(-${rotation}deg)`;
+        const quarter = this.markerCount / 4;
 
-            if (index % 3 === 0) {
+        for (var i = 0, j = 0; i < this.markerCount; i++) {
+            const marker = document.createElement('div');
+            marker.classList.add('marker');
+
+            const rotation = i * rotateStep;
+            if ( i === j * quarter) {
                 // Opens up possibility for special styling for each quarter of an hour
                 marker.classList.add('quarter');
-                marker.classList.add(`quarter-${index / 3}`);   
+                marker.classList.add(`quarter-${j}`);                 
+                marker.style.transform = `rotate(${rotation}deg) translate(${radius}${unit}) rotate(-${rotation}deg)`;  
+                j++;
+            } else {
+                marker.style.transform = `rotate(${rotation}deg) translate(${radius}${unit}) rotate(-180deg)`;  
             }
-        });
+            outerClockFace.appendChild(marker);
+        }    
     }
 
     [getSecondDegrees](seconds)  {
