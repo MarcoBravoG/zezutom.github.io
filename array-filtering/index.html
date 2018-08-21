@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cool Clock</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="content">
+            <div class="era" id="slider_value">1400</div>
+            1400<input id="spacing" 
+                       name="spacing" 
+                       type="range" 
+                       min="1400" 
+                       max="1980" 
+                       step="10" 
+                       value="1400" 
+                       oninput="inventorTable.filterByEra(this.value);"
+                       data-sizing="px">1980
+            <table>
+                <caption>Inventors</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Born</th>
+                        <th scope="col">Died</th>
+                        <th scope="col">Field</th>
+                        <th scope="col">Invention</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+        <div class="credit">
+            <div>
+                Idea and original solution provided by
+                <a href="https://wesbos.com" target="_blank">Wes Bos</a>
+            </div>
+            <div>
+                Markered clock face inspired by
+                <a href="http://www.javascriptkit.com/dhtmltutors/css3clock.shtml" target="_blank">
+                    JavascriptKit: CSS3 Clock
+                </a>
+            </div>
+        </div>        
+    </body>
+    <script type="application/javascript" src="script.js"></script>
+</html>
