@@ -1,27 +1,96 @@
+:root {
+    --baseColor: #333333;
+    --disabledColor: #646464;
+}
+
+body {
+    font-family: verdana,arial,sans-serif;
+}
+
 table {
-    border: 1px solid #ccc;
-    border-collapse: collapse;
-    margin: 0;
-    padding: 0;
     table-layout: fixed;
     width: 100%;
+    border-collapse: collapse;    
+    color: var(--baseColor);
 }
 
-table tr {
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
-    padding: .35em;
+thead th:last-child {
+    width: 40%;
 }
 
-table th,
-table td {
-    padding: .625em;
+th, td {
+    padding: 20px;
+}
+
+th {
+    background: #679fa5;
+    text-align: left;
+    cursor: pointer;
+}
+
+th:first-child {
+    border-radius: 10px 0 0 0;
+}
+
+th:last-child {
+    border-radius: 0 10px 0 0;
+}
+
+tr {
+    background: #d4e3e5;
+}
+
+tr:last-child td:first-child {
+    border-radius: 0 0 0 10px;    
+}
+
+tr:last-child td:last-child {
+    border-radius: 0 0 10px 0;    
+}
+
+tbody tr:nth-child(even) {
+    background-color: #c3dde0;
+}
+
+caption {
+    padding: 20px;
+    caption-side: top;
+    text-transform: capitalize;
     text-align: center;
+    letter-spacing: 1px;
 }
 
-.content {
+span.sort-by {
+    display: block;
+    width: 100%;
+    padding-right: 18px;
+    position: relative;
+}
+
+span.sort-by:before, span.sort-by:after {
+    border: 6px solid transparent;
+    content: "";
+    display: block;
+    height: 0;
+    right: 8px;
+    top: 50%;
+    position: absolute;
+    width: 0;
+}
+
+span.sort-by:before {
+	border-bottom-color: var(--disabledColor);
+	margin-top: -14px;
+}
+span.sort-by:after {
+	border-top-color: var(--baseColor);
+	margin-top: 1px;
+}
+
+div.content {
     padding-top: 50px;
 }
+
 @media screen and (max-width: 600px) {
     table thead {
         border: none;
