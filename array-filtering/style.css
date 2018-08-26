@@ -1,10 +1,34 @@
 :root {
     --baseColor: #333333;
     --disabledColor: #646464;
+    --cornerRadius: 10px;
 }
 
 body {
     font-family: verdana,arial,sans-serif;
+    padding: 10px;
+}
+
+input.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d4e3e5;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+input.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 30%; 
+    background: var(--baseColor);
+    cursor: pointer;
 }
 
 table {
@@ -29,11 +53,11 @@ th {
 }
 
 th:first-child {
-    border-radius: 10px 0 0 0;
+    border-radius: var(--cornerRadius) 0 0 0;
 }
 
 th:last-child {
-    border-radius: 0 10px 0 0;
+    border-radius: 0 var(--cornerRadius) 0 0;
 }
 
 tr {
@@ -41,11 +65,11 @@ tr {
 }
 
 tr:last-child td:first-child {
-    border-radius: 0 0 0 10px;    
+    border-radius: 0 0 0 var(--cornerRadius);    
 }
 
 tr:last-child td:last-child {
-    border-radius: 0 0 10px 0;    
+    border-radius: 0 0 var(--cornerRadius) 0;    
 }
 
 tbody tr:nth-child(even) {
@@ -57,6 +81,7 @@ caption {
     caption-side: top;
     text-transform: capitalize;
     text-align: center;
+    font-size: 1.2em;
     letter-spacing: 1px;
 }
 
@@ -79,16 +104,64 @@ span.sort-by:before, span.sort-by:after {
 }
 
 span.sort-by:before {
-	border-bottom-color: var(--disabledColor);
-	margin-top: -14px;
+    border-bottom-color: var(--disabledColor);
+    margin-top: -14px;
 }
 span.sort-by:after {
-	border-top-color: var(--baseColor);
-	margin-top: 1px;
+    border-top-color: var(--baseColor);
+    margin-top: 1px;
 }
 
 div.content {
     padding-top: 50px;
+}
+
+div.control-panel * {
+    box-sizing: border-box;    
+}
+
+div.control-panel {
+    display: flex;
+}
+
+/* Clear floats after the columns */
+div.control-panel:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+div.column {
+    float: left;
+    width: 33%;
+    margin: 5px;
+    padding: 20px;
+    background: #679fa5;
+    border-radius: var(--cornerRadius);
+}
+
+div.what-era {
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+div.what-field select {
+    width: 100%;
+    height: 50px;
+    font-size: 1.2em;
+    background: #d4e3e5;
+    border: none;
+    cursor: pointer;
+}
+
+div.search input {
+    width: 100%;
+    height: 50px;
+    font-size: 1.2em;
+    background: #d4e3e5;
+    border: none;
+    border-radius: 5px;
+    padding-left: 10px;
 }
 
 @media screen and (max-width: 600px) {
@@ -118,4 +191,13 @@ div.content {
         content: attr(data-label);
         float: left;
     }
+
+    div.control-panel {
+        display: block;
+    }
+    
+    div.column {
+        width: 100%;
+    }
+
 }

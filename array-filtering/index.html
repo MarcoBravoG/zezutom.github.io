@@ -8,16 +8,37 @@
     </head>
     <body>
         <div class="content">
-            <div class="era" id="slider_value">1400</div>
-            1400<input id="spacing" 
-                       name="spacing" 
-                       type="range" 
-                       min="1400" 
-                       max="1980" 
-                       step="10" 
-                       value="1400" 
-                       oninput="inventorTable.filterByEra(this.value);"
-                       data-sizing="px">1980
+            <div class="control-panel">
+                <div class="column">
+                    <div class="what-era" id="slider_value">1400</div>
+                    <input name="slider"
+                           class="slider"
+                           type="range" 
+                           min="1400" 
+                           max="1980" 
+                           step="10" 
+                           value="1400" 
+                           oninput="inventorTable.filterByEra(this.value);"
+                           data-sizing="px">                            
+                </div>
+                <div class="column">
+                    <div class="what-field">
+                        <select>
+                            <option value="0">All Fields</option>
+                            <option value="1">Astronomy</option>
+                            <option value="2">Chemistry</option>
+                            <option value="3">Mathematics</option>
+                            <option value="4">Physics</option>
+                            <option value="5">Telco</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="search">
+                        <input type="text" placeholder="Search..">
+                    </div>
+                </div>
+            </div>
             <table>
                 <caption>Famous Inventors of All Times</caption>
                 <thead>
@@ -30,7 +51,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
+
                 </tbody>
             </table>
         </div>
